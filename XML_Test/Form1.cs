@@ -16,6 +16,7 @@ namespace XML_Test
         {
             InitializeComponent();
             init_event();
+            // git 반영 test
 
         }
 
