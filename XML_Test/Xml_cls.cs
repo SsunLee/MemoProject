@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml;
 using System.Xml.XPath;
 using System.IO;
+using System.Linq;
 
 namespace XML_Test
 {
@@ -67,7 +64,7 @@ namespace XML_Test
         {
             var xDoc = XDocument.Load(_strXMLPath);
 
-            string idValue = Guid.NewGuid().ToString();
+            string idValue = System.Guid.NewGuid().ToString();
             // ID Attribute의 값은 GUID 로 할 것.
             xDoc.Root.Add(
                 new XElement("Memo",
