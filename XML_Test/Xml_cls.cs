@@ -94,6 +94,8 @@ namespace XML_Test
 
         }
 
+
+
         public void XMLRead()
         {
             XmlTextReader reader = null;
@@ -104,9 +106,21 @@ namespace XML_Test
             {
                 while (reader.Read())
                 {
+                
                     if (reader.Name.ToString() == "GUID")
                     {
-                        System.Diagnostics.Debug.Print(reader.GetAttribute("value").ToString());
+                        string _id = reader["value"].ToString() ;
+                        string _title = reader["memo_title"].ToString();
+                        string _content = reader["content"].ToString();
+
+                        string temp = string.Empty;
+                        temp = string.Format("" +
+                            "Memo id : {_id}" +
+                            "  - Memo Title : {_title}" +
+                            "  - Contents : " +
+                            "    {_content} " +
+                            "----------------------");
+                        System.Diagnostics.Debug.Print(temp);
                     }
                 }
             }
@@ -121,6 +135,11 @@ namespace XML_Test
 
 
         }
+
+        /// <summary>
+        /// XML의 ID값 가져오는 부분
+        /// </summary>
+        /// <param name="cb"></param>
         public void XMLGetIDList(System.Windows.Forms.ComboBox cb)
         {
             XmlTextReader reader = null;

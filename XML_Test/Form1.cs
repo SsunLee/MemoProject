@@ -40,17 +40,41 @@ namespace XML_Test
 
         private void writeXML_click(object sender, System.EventArgs e)
         {
-            c.WriteXML();
+            if (c._IsExistXML() == true)
+            {
+                c.WriteXML();
+            }
+            else 
+            {
+                MessageBox.Show("경로에 XML 파일이 없습니다.");
+            }
+            
         }
 
         private void modifyXML_click(object sender, System.EventArgs e)
         {
-            c.XMLModify();
+            if(c._IsExistXML() == true)
+            {
+                c.XMLModify();
+            }
+            else
+            {
+                MessageBox.Show("경로에 XML 파일이 없습니다.");
+            }
         }
 
         private void readXML_click(object sender, System.EventArgs e)
         {
-            c.XMLRead();
+            //c.XMLRead();
+     
+            if (c._IsExistXML() == true)
+            {
+                c.XMLRead();
+            }
+            else
+            {
+                MessageBox.Show("경로에 XML 파일이 없습니다.");
+            }
         }
 
         private void delXML_click(object sender, System.EventArgs e)
@@ -59,6 +83,14 @@ namespace XML_Test
         }
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+            if (c._IsExistXML() == true)
+            {
+                c.XMLGetIDList(this.comboBox1);
+            }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
         {
             if (c._IsExistXML() == true)
             {
