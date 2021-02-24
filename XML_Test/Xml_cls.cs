@@ -9,17 +9,20 @@ namespace XML_Test
 {
     class Xml_cls
     {
+        public Xml_cls()
+        {
+            _IsExistXML();
+
+        }
 
         public string _strXMLPath { get; set; }
-
-
         private bool _blexist = false;
 
         /// <summary>
         /// File 유무 여부 Check
         /// </summary>
         /// <returns></returns>
-        private bool _IsExistXML()
+        public bool _IsExistXML()
         {
             if (File.Exists(_strXMLPath))
             {
@@ -29,14 +32,14 @@ namespace XML_Test
             {
                 _blexist = false;
             }
+            System.Diagnostics.Debug.Print("파일체크");
             return _blexist;
-
         }
 
         /// <summary>
         /// XML 파일 생성하기
         /// </summary>
-        private void makeXMLFile()
+        public void makeXMLFile()
         {
             // 파일이 없으면
             if (_blexist == false)
@@ -46,21 +49,17 @@ namespace XML_Test
                 writer.WriteStartDocument(true);
                 writer.Formatting = Formatting.Indented;
                 writer.Indentation = 2;
-
                 writer.WriteStartElement("MemoLists");
-
                 writer.WriteEndElement();
-
                 writer.WriteEndDocument();
                 writer.Close();
-
             }
         }
 
         /// <summary>
         /// XML 작성하기 
         /// </summary>
-        private void WriteXML()
+        public void WriteXML()
         {
             var xDoc = XDocument.Load(_strXMLPath);
 
@@ -77,7 +76,7 @@ namespace XML_Test
         /// <summary>
         /// xml 수정하기
         /// </summary>
-        private void XMLModify()
+        public void XMLModify()
         {
             XDocument doc = XDocument.Load(_strXMLPath);
 
@@ -92,6 +91,63 @@ namespace XML_Test
             }
 
             doc.Save(_strXMLPath);
+
+        }
+
+        public void XMLRead()
+        {
+            XmlTextReader reader = null;
+            reader = new XmlTextReader(_strXMLPath);
+            reader.WhitespaceHandling = WhitespaceHandling.None;
+
+            try
+            {
+                while (reader.Read())
+                {
+                    if (reader.Name.ToString() == "GUID")
+                    {
+                        System.Diagnostics.Debug.Print(reader.GetAttribute("value").ToString());
+                    }
+                }
+            }
+            catch (System.IO.IOException e)
+            {
+                System.Windows.Forms.MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                reader.Close();
+            }
+
+
+        }
+        public void XMLGetIDList(System.Windows.Forms.ComboBox cb)
+        {
+            XmlTextReader reader = null;
+            reader = new XmlTextReader(_strXMLPath);
+            reader.WhitespaceHandling = WhitespaceHandling.None;
+            cb.Items.Clear();
+
+            try
+            {
+                while (reader.Read())
+                {
+                    if (reader.Name.ToString() == "GUID")
+                    {
+                        //System.Diagnostics.Debug.Print(reader.GetAttribute("value").ToString());
+                        cb.Items.Add(reader.GetAttribute("value").ToString());
+                        cb.SelectedIndex = 0;
+                    }
+                }
+            }
+            catch (System.IO.IOException e)
+            {
+                System.Windows.Forms.MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                reader.Close();
+            }
 
         }
 

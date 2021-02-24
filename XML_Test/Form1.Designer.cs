@@ -34,12 +34,14 @@
             this.btnWrite = new System.Windows.Forms.Button();
             this.btnDel = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnMake
             // 
             this.btnMake.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMake.Location = new System.Drawing.Point(14, 34);
+            this.btnMake.Location = new System.Drawing.Point(14, 25);
             this.btnMake.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnMake.Name = "btnMake";
             this.btnMake.Size = new System.Drawing.Size(81, 72);
@@ -50,7 +52,7 @@
             // btnModify
             // 
             this.btnModify.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnModify.Location = new System.Drawing.Point(202, 34);
+            this.btnModify.Location = new System.Drawing.Point(202, 25);
             this.btnModify.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnModify.Name = "btnModify";
             this.btnModify.Size = new System.Drawing.Size(81, 72);
@@ -61,7 +63,7 @@
             // btnRead
             // 
             this.btnRead.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRead.Location = new System.Drawing.Point(296, 34);
+            this.btnRead.Location = new System.Drawing.Point(296, 25);
             this.btnRead.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnRead.Name = "btnRead";
             this.btnRead.Size = new System.Drawing.Size(81, 72);
@@ -72,7 +74,7 @@
             // btnWrite
             // 
             this.btnWrite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnWrite.Location = new System.Drawing.Point(390, 34);
+            this.btnWrite.Location = new System.Drawing.Point(390, 25);
             this.btnWrite.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnWrite.Name = "btnWrite";
             this.btnWrite.Size = new System.Drawing.Size(81, 72);
@@ -83,7 +85,7 @@
             // btnDel
             // 
             this.btnDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDel.Location = new System.Drawing.Point(108, 34);
+            this.btnDel.Location = new System.Drawing.Point(108, 25);
             this.btnDel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(81, 72);
@@ -94,17 +96,36 @@
             // textBox1
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(12, 113);
+            this.textBox1.Location = new System.Drawing.Point(12, 143);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(459, 241);
+            this.textBox1.Size = new System.Drawing.Size(459, 214);
             this.textBox1.TabIndex = 1;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(108, 105);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(362, 26);
+            this.comboBox1.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(25, 110);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(63, 18);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "XML GUID";
             // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(483, 366);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnWrite);
             this.Controls.Add(this.btnRead);
@@ -116,6 +137,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -129,6 +151,8 @@
         private System.Windows.Forms.Button btnWrite;
         private System.Windows.Forms.Button btnDel;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label1;
     }
 }
 
