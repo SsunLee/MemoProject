@@ -37,6 +37,10 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.txtTitle = new System.Windows.Forms.TextBox();
+            this.txtContent = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnMake
@@ -53,7 +57,7 @@
             // btnModify
             // 
             this.btnModify.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnModify.Location = new System.Drawing.Point(202, 25);
+            this.btnModify.Location = new System.Drawing.Point(390, 26);
             this.btnModify.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnModify.Name = "btnModify";
             this.btnModify.Size = new System.Drawing.Size(81, 72);
@@ -64,7 +68,7 @@
             // btnRead
             // 
             this.btnRead.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRead.Location = new System.Drawing.Point(296, 25);
+            this.btnRead.Location = new System.Drawing.Point(200, 25);
             this.btnRead.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnRead.Name = "btnRead";
             this.btnRead.Size = new System.Drawing.Size(81, 72);
@@ -75,7 +79,7 @@
             // btnWrite
             // 
             this.btnWrite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnWrite.Location = new System.Drawing.Point(390, 25);
+            this.btnWrite.Location = new System.Drawing.Point(294, 25);
             this.btnWrite.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnWrite.Name = "btnWrite";
             this.btnWrite.Size = new System.Drawing.Size(81, 72);
@@ -97,10 +101,10 @@
             // textBox1
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(12, 143);
+            this.textBox1.Location = new System.Drawing.Point(14, 143);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(459, 214);
+            this.textBox1.Size = new System.Drawing.Size(457, 127);
             this.textBox1.TabIndex = 1;
             // 
             // comboBox1
@@ -135,12 +139,50 @@
             this.btnRefresh.UseVisualStyleBackColor = false;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
+            // txtTitle
+            // 
+            this.txtTitle.Location = new System.Drawing.Point(90, 286);
+            this.txtTitle.Name = "txtTitle";
+            this.txtTitle.Size = new System.Drawing.Size(380, 25);
+            this.txtTitle.TabIndex = 5;
+            // 
+            // txtContent
+            // 
+            this.txtContent.Location = new System.Drawing.Point(90, 317);
+            this.txtContent.Name = "txtContent";
+            this.txtContent.Size = new System.Drawing.Size(380, 25);
+            this.txtContent.TabIndex = 6;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Location = new System.Drawing.Point(21, 289);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(42, 18);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Title : ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Location = new System.Drawing.Point(21, 317);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(61, 18);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Content : ";
+            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(483, 366);
+            this.Controls.Add(this.txtContent);
+            this.Controls.Add(this.txtTitle);
             this.Controls.Add(this.btnRefresh);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.textBox1);
@@ -171,6 +213,10 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.TextBox txtTitle;
+        private System.Windows.Forms.TextBox txtContent;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
 

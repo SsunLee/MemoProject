@@ -152,21 +152,6 @@ namespace XML_Test
 
             reader.Close();
 
-            /*                    if (reader.Name.ToString() == "GUID")
-                                {
-                                    string _id = reader["value"].ToString() ;
-                                    string _title = reader["memo_title"].ToString();
-                                    string _content = reader["content"].ToString();
-
-                                    string temp = string.Empty;
-                                    temp = string.Format("" +
-                                        "Memo id : {_id}" +
-                                        "  - Memo Title : {_title}" +
-                                        "  - Contents : " +
-                                        "    {_content} " +
-                                        "----------------------");
-                                    System.Diagnostics.Debug.Print(temp);
-                                }*/
         }
 
         /// <summary>
@@ -191,17 +176,40 @@ namespace XML_Test
                 msg = $"\n-------------------------------------------- \n< GUID : {guid} >\n < Title : {title} >\n <Content : {content} >\n --------------------------------------------";
                 //print(@msg);
                 Return_msg += msg;
-
             }
             print(Return_msg);
             return Return_msg;
-
         }
-    
 
+        public string XMLread(string Key)
+        {
+            string Return_msg = string.Empty;
+            string msg = string.Empty;
+            string guid = string.Empty;
+            string title = string.Empty;
+            string content = string.Empty;
 
+            XmlDocument xml = new XmlDocument();
+            xml.Load(_strXMLPath);
+            XmlNode root = xml.SelectNodes("MemoLists")[0];
 
-        
+            foreach (XmlNode n in root.SelectNodes("Memo"))
+            {
+                guid = n.Attributes["GUID"].Value;
+                if (guid == Key)
+                {
+                    title = n.SelectNodes("memo_title")[0].InnerText;
+                    content = n.SelectNodes("content")[0].InnerText;
+
+                    msg = $"<GUID : {guid}>\n <Title : {title}>\n <Content : {content}>";
+                    //print(@msg);
+                    Return_msg += msg;
+                }
+
+            }
+
+            return Return_msg;
+        }
 
         /// <summary> 
         /// XML의 ID값 가져오는 부분 

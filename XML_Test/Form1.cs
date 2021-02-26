@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -24,7 +25,13 @@ namespace XML_Test
         private void init_Control()
         {
             this.textBox1.ScrollBars = ScrollBars.Vertical;
+            this.textBox1.ReadOnly = true;
+
+            this.txtTitle.Enabled = ctr_disable;
+            this.txtContent.Enabled = ctr_disable;
         }
+        private bool ctr_disable = false;
+
         private Xml_cls c = new Xml_cls();
 
         private void init_event()
@@ -34,6 +41,7 @@ namespace XML_Test
             this.btnModify.Click += new System.EventHandler(this.modifyXML_click);
             this.btnRead.Click += new System.EventHandler(this.readXML_click);
             this.btnDel.Click += new System.EventHandler(this.delXML_click);
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.cbBox_SelectedChange);
         }
 
         private void makeXML_click(object sender, System.EventArgs e)
@@ -75,11 +83,34 @@ namespace XML_Test
             }
         }
 
+        private TextBox TxtBoxIsEnabled(TextBox tx, bool flag)
+        {
+            tx.Enabled = flag;
+            return tx;
+        }
+
         private void modifyXML_click(object sender, System.EventArgs e)
         {
             if(c._IsExistXML() == true)
             {
-                c.XMLModify();
+                //c.XMLModify();
+
+                if (ctr_disable == true)
+                {
+                    ctr_disable = false;
+                    TxtBoxIsEnabled(this.txtTitle, ctr_disable);
+                    TxtBoxIsEnabled(this.txtContent, ctr_disable);
+
+                }
+                else
+                {
+                    ctr_disable = true;
+                    TxtBoxIsEnabled(this.txtTitle, ctr_disable);
+                    TxtBoxIsEnabled(this.txtContent, ctr_disable);
+ 
+                }
+
+
             }
             else
             {
@@ -138,6 +169,21 @@ namespace XML_Test
                 this.comboBox1.Items.Clear();
                 this.comboBox1.Text = "xml 파일이 없습니다.";
             }
+        }
+
+        private void cbBox_SelectedChange(object sender, EventArgs e)
+        {
+            ComboBox cb = (ComboBox)sender;
+            Debug.Print(cb.Items[cb.SelectedIndex].ToString());
+            string key = string.Empty;
+            string msg = string.Empty;
+            key = cb.Items[cb.SelectedIndex].ToString();
+            msg = c.XMLread(key);
+            Debug.Print(msg);
+            msg = msg.Replace("\n", "\r\n");
+            textBox1.Clear();
+            textBox1.AppendText(msg);
+
         }
 
     }
