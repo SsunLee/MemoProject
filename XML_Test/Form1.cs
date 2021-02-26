@@ -17,10 +17,14 @@ namespace XML_Test
         {
             InitializeComponent();
             init_event();
-            // git 반영 test
-            c._strXMLPath =Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "XMLFile1.xml");
+            init_Control();
+            
             System.Diagnostics.Debug.Print("xml adress check");
-    }
+          }
+        private void init_Control()
+        {
+            this.textBox1.ScrollBars = ScrollBars.Vertical;
+        }
         private Xml_cls c = new Xml_cls();
 
         private void init_event()
@@ -34,7 +38,24 @@ namespace XML_Test
 
         private void makeXML_click(object sender, System.EventArgs e)
         {
-            c.makeXMLFile();
+
+            if (c._IsExistXML() == true)
+            {
+                string msg = "xml 파일이 이미 존재 합니다.";
+                System.Windows.Forms.MessageBox.Show(@msg);
+
+            }
+            else
+            {
+                c.makeXMLFile();
+                // 파일이 만들어졌으면 Directory Open
+                string strOpenPath = string.Empty;
+                strOpenPath = Path.GetDirectoryName(c._strXMLPath);
+                System.Diagnostics.Debug.Print(@strOpenPath);
+                System.Diagnostics.Process.Start(@"C:\Windows\explorer.exe ", String.Format("/n, /e, {0}", c._strXMLPath));
+            }
+
+    
 
         }
 
@@ -42,13 +63,16 @@ namespace XML_Test
         {
             if (c._IsExistXML() == true)
             {
-                c.WriteXML();
+                if (c.WriteXML() == false)
+                {
+                    MessageBox.Show("성공적으로 Xml이 작성 되었습니다.");
+                    readXML_click(sender, e);
+                 }
             }
             else 
             {
                 MessageBox.Show("경로에 XML 파일이 없습니다.");
             }
-            
         }
 
         private void modifyXML_click(object sender, System.EventArgs e)
@@ -63,13 +87,18 @@ namespace XML_Test
             }
         }
 
+
         private void readXML_click(object sender, System.EventArgs e)
         {
             //c.XMLRead();
      
             if (c._IsExistXML() == true)
             {
-                c.XMLRead();
+                //c.XMLRead();
+                string msg = c.XMLread();
+                msg = msg.Replace("\n", "\r\n");
+                textBox1.Clear();
+                textBox1.AppendText(msg);
             }
             else
             {
@@ -79,7 +108,10 @@ namespace XML_Test
 
         private void delXML_click(object sender, System.EventArgs e)
         {
-
+            if (c._IsExistXML() == true)
+            {
+                c.XMLDelete();
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -87,6 +119,11 @@ namespace XML_Test
             if (c._IsExistXML() == true)
             {
                 c.XMLGetIDList(this.comboBox1);
+            }
+            else
+            {
+                this.comboBox1.Items.Clear();
+                this.comboBox1.Text = "xml 파일이 없습니다.";
             }
         }
 
@@ -96,6 +133,12 @@ namespace XML_Test
             {
                 c.XMLGetIDList(this.comboBox1);
             }
+            else
+            {
+                this.comboBox1.Items.Clear();
+                this.comboBox1.Text = "xml 파일이 없습니다.";
+            }
         }
+
     }
 }
